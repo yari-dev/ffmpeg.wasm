@@ -121,15 +121,29 @@ COPY build/ffmpeg.sh /src/build.sh
 RUN bash -x /src/build.sh \
       --enable-gpl \
       --disable-nonfree \
+      --disable-decoder=h264 --disable-encoder=libx264 \
+      --disable-decoder=hevc --disable-encoder=libx265 \
+      --disable-decoder=mpeg1video --disable-encoder=mpeg1video \
+      --disable-decoder=mpeg2video --disable-encoder=mpeg2video \
+      --disable-decoder=mpeg4 --disable-encoder=mpeg4 \
+      --disable-decoder=vc1 \
+      --disable-decoder=vp8 --disable-decoder=vp9 \
+      --disable-decoder=jpeg2000 --disable-encoder=jpeg2000 \
+      --disable-decoder=aac --disable-encoder=aac --disable-encoder=aac_fixed \
+      --disable-decoder=mp3 \
+      --disable-decoder=ac3 --disable-decoder=eac3 --disable-encoder=ac3 \
+      --disable-decoder=dts \
+      --disable-decoder=amr_nb --disable-decoder=amr_wb \
+      --disable-decoder=libopus --disable-encoder=libopus \
+      --disable-encoder=dvbsub --disable-encoder=dvdsub \
+      --disable-decoder=jpegls --disable-encoder=jpegls \
       --enable-libtheora \
       --enable-libvorbis \
-      --enable-libopus \
       --enable-zlib \
-      --enable-libwebp \
       --enable-libfreetype \
       --enable-libfribidi \
       --enable-libass \
-      --enable-libzimg 
+      --enable-libzimg
 
 # Build ffmpeg.wasm
 FROM ffmpeg-builder AS ffmpeg-wasm-builder
@@ -143,11 +157,7 @@ ENV FFMPEG_LIBS \
       -lvorbis \
       -lvorbisenc \
       -lvorbisfile \
-      -lopus \
       -lz \
-      -lwebpmux \
-      -lwebp \
-      -lsharpyuv \
       -lfreetype \
       -lfribidi \
       -lharfbuzz \
