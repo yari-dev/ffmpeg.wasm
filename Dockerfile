@@ -121,17 +121,15 @@ COPY build/ffmpeg.sh /src/build.sh
 RUN bash -x /src/build.sh \
       --enable-gpl \
       --disable-nonfree \
-      --disable-decoder=h264 --disable-encoder=libx264 \
-      --disable-decoder=hevc --disable-encoder=libx265 \
-      --disable-decoder=mpeg1video --disable-encoder=mpeg1video \
-      --disable-decoder=mpeg2video --disable-encoder=mpeg2video \
-      --disable-decoder=mpeg4 --disable-encoder=mpeg4 \
+      --disable-encoder=libx264 \
+      --disable-encoder=libx265 \
+      --disable-encoder=mpeg1video \
+      --disable-encoder=mpeg2video \
+      --disable-encoder=mpeg4 \
       --disable-decoder=vc1 \
-      --disable-decoder=vp8 --disable-decoder=vp9 \
       --disable-decoder=jpeg2000 --disable-encoder=jpeg2000 \
-      --disable-decoder=aac --disable-encoder=aac --disable-encoder=aac_fixed \
-      --disable-decoder=mp3 \
-      --disable-decoder=ac3 --disable-decoder=eac3 --disable-encoder=ac3 \
+      --disable-encoder=aac --disable-encoder=aac_fixed \
+      --disable-encoder=ac3 \
       --disable-decoder=dts \
       --disable-decoder=amr_nb --disable-decoder=amr_wb \
       --disable-decoder=libopus --disable-encoder=libopus \
